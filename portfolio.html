@@ -1,0 +1,726 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Portfolio — RIMT University</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=Source+Sans+3:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --navy: #142845;
+    --navy-deep: #0c1c30;
+    --gold: #c9952c;
+    --gold-soft: #e3b95c;
+    --parchment: #f7f3ea;
+    --parchment-dim: #efe9da;
+    --ink: #211d18;
+    --ink-soft: #5a5448;
+    --line: #d8cfb8;
+    --green-accent: #4a6b4f;
+  }
+
+  *{ margin:0; padding:0; box-sizing:border-box; }
+  html{ scroll-behavior: smooth; }
+
+  body{
+    background: var(--parchment);
+    color: var(--ink);
+    font-family: 'Source Sans 3', sans-serif;
+    line-height: 1.6;
+  }
+
+  h1, h2, h3{
+    font-family: 'Fraunces', serif;
+    font-weight: 600;
+    letter-spacing: -0.01em;
+    color: var(--navy);
+  }
+
+  a{ color: inherit; text-decoration: none; }
+
+  .wrap{
+    max-width: 1180px;
+    margin: 0 auto;
+    padding: 0 32px;
+  }
+
+  /* ---------- Header (shared) ---------- */
+  header{
+    position: sticky;
+    top: 0;
+    z-index: 50;
+    background: var(--parchment);
+    border-bottom: 1px solid var(--line);
+  }
+
+  .nav-row{
+    display:flex;
+    align-items:center;
+    justify-content: space-between;
+    padding: 18px 32px;
+    max-width: 1180px;
+    margin: 0 auto;
+  }
+
+  .brand{ display:flex; align-items:center; gap: 12px; }
+
+  .brand-mark{
+    width: 42px; height: 42px;
+    border-radius: 2px;
+    background: var(--navy);
+    display:flex; align-items:center; justify-content:center;
+    color: var(--gold-soft);
+    font-family: 'Fraunces', serif;
+    font-weight: 700;
+    font-size: 18px;
+    flex-shrink:0;
+    border: 1px solid var(--gold);
+  }
+
+  .brand-text .name{
+    font-family: 'Fraunces', serif;
+    font-weight: 600;
+    font-size: 19px;
+    color: var(--navy);
+    line-height: 1.1;
+  }
+
+  .brand-text .sub{
+    font-size: 11px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--ink-soft);
+  }
+
+  nav ul{ display:flex; gap: 36px; list-style:none; }
+
+  nav a{
+    font-size: 15px;
+    font-weight: 600;
+    color: var(--navy);
+    position: relative;
+    padding-bottom: 4px;
+  }
+
+  nav a.active{ color: var(--gold); }
+
+  nav a::after{
+    content:"";
+    position:absolute;
+    left:0; bottom:0;
+    width:0; height: 2px;
+    background: var(--gold);
+    transition: width 0.25s ease;
+  }
+
+  nav a:hover::after, nav a.active::after{ width: 100%; }
+
+  .nav-cta{
+    background: var(--navy);
+    color: var(--parchment) !important;
+    padding: 10px 20px;
+    border-radius: 2px;
+    font-size: 14px;
+    font-weight: 600;
+    border: 1px solid var(--navy);
+  }
+  .nav-cta:hover{ background: var(--navy-deep); }
+
+  /* ---------- Portfolio Hero ---------- */
+  .p-hero{
+    background: var(--navy);
+    color: var(--parchment);
+    padding: 72px 0 56px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .p-hero::before{
+    content:"";
+    position:absolute;
+    inset:0;
+    background-image: repeating-linear-gradient(135deg, rgba(201,149,44,0.05) 0px, rgba(201,149,44,0.05) 1px, transparent 1px, transparent 36px);
+  }
+
+  .p-hero .wrap{ position:relative; }
+
+  .eyebrow{
+    display:inline-flex;
+    align-items:center;
+    gap: 10px;
+    font-size: 12.5px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--gold-soft);
+    margin-bottom: 18px;
+    font-weight: 600;
+  }
+  .eyebrow::before{ content:""; width: 28px; height: 1px; background: var(--gold-soft); }
+
+  .p-hero h1{
+    color: var(--parchment);
+    font-size: clamp(34px, 4.6vw, 50px);
+    line-height: 1.1;
+    max-width: 780px;
+    margin-bottom: 18px;
+  }
+
+  .p-hero p{
+    color: #cdd6e3;
+    max-width: 560px;
+    font-size: 16.5px;
+  }
+
+  /* ---------- Section generic ---------- */
+  section{ padding: 80px 0; }
+
+  .section-head{ max-width: 640px; margin-bottom: 48px; }
+
+  .section-head .tag{
+    font-size: 12.5px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--gold);
+    font-weight: 700;
+    margin-bottom: 14px;
+    display:block;
+  }
+
+  .section-head h2{ font-size: clamp(26px, 3.2vw, 34px); line-height: 1.15; }
+  .section-head p{ color: var(--ink-soft); margin-top: 12px; font-size: 15.5px; }
+
+  /* ---------- Register / ledger table for departments ---------- */
+  .register{
+    border: 1px solid var(--line);
+    border-radius: 3px;
+    overflow: hidden;
+    background: #fff;
+  }
+
+  .register-row{
+    display:grid;
+    grid-template-columns: 90px 1.4fr 1fr 0.8fr;
+    align-items:center;
+    border-bottom: 1px solid var(--line);
+    padding: 22px 26px;
+    transition: background 0.2s ease;
+  }
+
+  .register-row:last-child{ border-bottom: none; }
+  .register-row:hover{ background: var(--parchment-dim); }
+
+  .register-row.head{
+    background: var(--navy);
+    color: var(--parchment);
+    font-size: 12px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    font-weight: 700;
+    padding: 16px 26px;
+  }
+
+  .register-row .entry-no{
+    font-family: 'Fraunces', serif;
+    font-size: 20px;
+    color: var(--gold);
+    font-weight: 700;
+  }
+
+  .register-row h4{
+    font-family: 'Fraunces', serif;
+    font-size: 17px;
+    color: var(--navy);
+    margin-bottom: 4px;
+  }
+
+  .register-row .desc{
+    font-size: 13.5px;
+    color: var(--ink-soft);
+  }
+
+  .register-row .stat{
+    font-size: 14px;
+    color: var(--ink);
+  }
+
+  .register-row .stat strong{
+    color: var(--navy);
+    font-family: 'Fraunces', serif;
+    font-size: 16px;
+  }
+
+  .badge{
+    display:inline-block;
+    font-size: 11.5px;
+    font-weight: 700;
+    padding: 5px 11px;
+    border-radius: 20px;
+    background: rgba(74,107,79,0.12);
+    color: var(--green-accent);
+    text-align:center;
+  }
+
+  /* ---------- Achievement cards ---------- */
+  .achieve-grid{
+    display:grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+  }
+
+  .achieve-card{
+    background: var(--parchment-dim);
+    border: 1px solid var(--line);
+    border-radius: 3px;
+    padding: 28px 24px;
+    position: relative;
+  }
+
+  .achieve-card .year{
+    font-family: 'Fraunces', serif;
+    font-size: 13px;
+    color: var(--gold);
+    font-weight: 700;
+    letter-spacing: 0.06em;
+    margin-bottom: 14px;
+    display:block;
+  }
+
+  .achieve-card h3{ font-size: 19px; margin-bottom: 10px; }
+  .achieve-card p{ font-size: 14px; color: var(--ink-soft); }
+
+  /* ---------- Placement record (statistics strip) ---------- */
+  .placement{
+    background: var(--navy-deep);
+    color: var(--parchment);
+  }
+
+  .placement-grid{
+    display:grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 0;
+    border: 1px solid rgba(247,243,234,0.15);
+    border-radius: 3px;
+    overflow:hidden;
+  }
+
+  .placement-cell{
+    padding: 32px 26px;
+    border-right: 1px solid rgba(247,243,234,0.15);
+  }
+  .placement-cell:last-child{ border-right:none; }
+
+  .placement-cell .num{
+    font-family: 'Fraunces', serif;
+    font-size: 36px;
+    color: var(--gold-soft);
+    margin-bottom: 8px;
+  }
+
+  .placement-cell .lbl{
+    font-size: 13px;
+    color: #c3cbda;
+  }
+
+  .recruiters{
+    margin-top: 40px;
+    display:flex;
+    flex-wrap: wrap;
+    gap: 14px;
+  }
+
+  .recruiter-chip{
+    border: 1px solid rgba(247,243,234,0.2);
+    padding: 9px 18px;
+    border-radius: 20px;
+    font-size: 13.5px;
+    color: #d8deea;
+  }
+
+  /* ---------- Gallery (campus life, css-built) ---------- */
+  .gallery-grid{
+    display:grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-template-rows: 160px 160px;
+    gap: 14px;
+  }
+
+  .g-tile{
+    border-radius: 3px;
+    position: relative;
+    overflow:hidden;
+    display:flex;
+    align-items:flex-end;
+    padding: 16px;
+  }
+
+  .g-tile span{
+    position:relative;
+    color: var(--parchment);
+    font-family: 'Fraunces', serif;
+    font-size: 14px;
+    font-style: italic;
+  }
+
+  .g-tile::after{
+    content:"";
+    position:absolute; inset:0;
+    background: linear-gradient(180deg, transparent 35%, rgba(0,0,0,0.55) 100%);
+  }
+
+  .g1{ grid-column: span 2; grid-row: span 2; background: linear-gradient(135deg, #1c3658, #0c1c30); }
+  .g2{ grid-column: span 1; background: linear-gradient(135deg, #c9952c, #8a6418); }
+  .g3{ grid-column: span 1; background: linear-gradient(135deg, #4a6b4f, #2c4030); }
+  .g4{ grid-column: span 1; background: linear-gradient(135deg, #6b4a4f, #3a2326); }
+  .g5{ grid-column: span 1; background: linear-gradient(135deg, #2b4a6b, #142845); }
+
+  /* ---------- CTA band ---------- */
+  .cta-band{
+    background: var(--gold);
+    color: var(--navy-deep);
+    text-align:center;
+    padding: 64px 0;
+  }
+
+  .cta-band h2{ color: var(--navy-deep); margin-bottom: 16px; }
+  .cta-band p{ max-width: 480px; margin: 0 auto 28px; font-size: 15.5px; }
+
+  .btn{
+    display:inline-flex;
+    align-items:center;
+    gap: 8px;
+    padding: 14px 28px;
+    font-weight: 700;
+    font-size: 15px;
+    border-radius: 2px;
+    background: var(--navy);
+    color: var(--parchment);
+  }
+  .btn:hover{ background: var(--navy-deep); }
+
+  /* ---------- Footer (shared) ---------- */
+  footer{ background: var(--navy); color: #aab6c8; padding: 56px 0 28px; }
+
+  .footer-grid{
+    display:grid;
+    grid-template-columns: 1.4fr 1fr 1fr 1fr;
+    gap: 40px;
+    padding-bottom: 36px;
+    border-bottom: 1px solid rgba(247,243,234,0.12);
+  }
+
+  .footer-brand .name{
+    font-family: 'Fraunces', serif;
+    color: var(--parchment);
+    font-size: 19px;
+    margin-bottom: 10px;
+  }
+  .footer-brand p{ font-size: 14px; max-width: 280px; line-height: 1.6; }
+
+  .footer-col h5{
+    color: var(--parchment);
+    font-size: 13px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    margin-bottom: 16px;
+  }
+  .footer-col ul{ list-style:none; }
+  .footer-col li{ margin-bottom: 10px; font-size: 14px; }
+  .footer-col a:hover{ color: var(--gold-soft); }
+
+  .footer-bottom{
+    display:flex;
+    justify-content: space-between;
+    padding-top: 22px;
+    font-size: 12.5px;
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+
+  /* ---------- Responsive ---------- */
+  @media (max-width: 900px){
+    nav ul{ display:none; }
+    .achieve-grid{ grid-template-columns: 1fr 1fr; }
+    .placement-grid{ grid-template-columns: 1fr 1fr; }
+    .gallery-grid{ grid-template-columns: 1fr 1fr; grid-template-rows: 140px 140px 140px; }
+    .g1{ grid-column: span 2; grid-row: span 1; }
+    .footer-grid{ grid-template-columns: 1fr 1fr; }
+    .register-row{ grid-template-columns: 60px 1fr; row-gap: 6px; }
+    .register-row .stat, .register-row .badge-col{ grid-column: 2; }
+  }
+
+  @media (max-width: 600px){
+    .wrap{ padding: 0 20px; }
+    .nav-row{ padding: 16px 20px; }
+    .achieve-grid{ grid-template-columns: 1fr; }
+    .placement-grid{ grid-template-columns: 1fr 1fr; }
+    .gallery-grid{ grid-template-columns: 1fr 1fr; }
+    .footer-grid{ grid-template-columns: 1fr; }
+    section{ padding: 56px 0; }
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="nav-row">
+    <a href="index.html" class="brand">
+      <div class="brand-mark">R</div>
+      <div class="brand-text">
+        <div class="name">RIMT University</div>
+        <div class="sub">Mandi Gobindgarh · Punjab</div>
+      </div>
+    </a>
+    <nav>
+      <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="index.html#about">About</a></li>
+        <li><a href="index.html#programs">Programs</a></li>
+        <li><a href="index.html#admission">Admission</a></li>
+        <li><a href="portfolio.html" class="active">Portfolio</a></li>
+      </ul>
+    </nav>
+    <a href="index.html#admission" class="nav-cta">Apply Now</a>
+  </div>
+</header>
+
+<section class="p-hero">
+  <div class="wrap">
+    <span class="eyebrow">The University Register</span>
+    <h1>Departments, milestones, and placement record — entered as kept.</h1>
+    <p>A running account of what RIMT University has built across its schools, where students have landed after graduating, and what the campus looks like in practice.</p>
+  </div>
+</section>
+
+<section id="departments">
+  <div class="wrap">
+    <div class="section-head">
+      <span class="tag">Departments</span>
+      <h2>Six schools, one campus</h2>
+      <p>Each department is staffed by faculty with active industry or research ties, not purely classroom instructors.</p>
+    </div>
+
+    <div class="register">
+      <div class="register-row head">
+        <span>Entry</span>
+        <span>Department</span>
+        <span>Established</span>
+        <span>Status</span>
+      </div>
+
+      <div class="register-row">
+        <span class="entry-no">01</span>
+        <div>
+          <h4>School of Engineering &amp; Technology</h4>
+          <div class="desc">CSE, Mechanical, Electronics &amp; Communication, Civil</div>
+        </div>
+        <span class="stat"><strong>2009</strong> founding year</span>
+        <span class="badge">Active intake</span>
+      </div>
+
+      <div class="register-row">
+        <span class="entry-no">02</span>
+        <div>
+          <h4>School of Management Studies</h4>
+          <div class="desc">MBA, BBA, dual-specialisation tracks</div>
+        </div>
+        <span class="stat"><strong>2010</strong> founding year</span>
+        <span class="badge">Active intake</span>
+      </div>
+
+      <div class="register-row">
+        <span class="entry-no">03</span>
+        <div>
+          <h4>School of Agriculture Sciences</h4>
+          <div class="desc">B.Sc. (Hons.) Agriculture, demonstration farm</div>
+        </div>
+        <span class="stat"><strong>2012</strong> founding year</span>
+        <span class="badge">Active intake</span>
+      </div>
+
+      <div class="register-row">
+        <span class="entry-no">04</span>
+        <div>
+          <h4>School of Pharmaceutical Sciences</h4>
+          <div class="desc">B.Pharma, hospital rotation partnerships</div>
+        </div>
+        <span class="stat"><strong>2013</strong> founding year</span>
+        <span class="badge">Active intake</span>
+      </div>
+
+      <div class="register-row">
+        <span class="entry-no">05</span>
+        <div>
+          <h4>School of Law</h4>
+          <div class="desc">BA LL.B (Hons.), moot court &amp; legal aid clinic</div>
+        </div>
+        <span class="stat"><strong>2015</strong> founding year</span>
+        <span class="badge">Active intake</span>
+      </div>
+
+      <div class="register-row">
+        <span class="entry-no">06</span>
+        <div>
+          <h4>School of Basic &amp; Applied Sciences</h4>
+          <div class="desc">B.Sc. / M.Sc. across Physics, Chemistry, Mathematics</div>
+        </div>
+        <span class="stat"><strong>2011</strong> founding year</span>
+        <span class="badge">Active intake</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="placement">
+  <div class="wrap">
+    <div class="section-head">
+      <span class="tag" style="color:var(--gold-soft);">Placement Record</span>
+      <h2 style="color:var(--parchment);">What graduating classes have walked into</h2>
+      <p style="color:#c3cbda;">Figures reflect the most recent placement season and are updated once the cycle closes.</p>
+    </div>
+
+    <div class="placement-grid">
+      <div class="placement-cell">
+        <div class="num">91%</div>
+        <div class="lbl">of eligible students placed</div>
+      </div>
+      <div class="placement-cell">
+        <div class="num">₹42L</div>
+        <div class="lbl">highest package offered</div>
+      </div>
+      <div class="placement-cell">
+        <div class="num">₹4.8L</div>
+        <div class="lbl">average package, engineering</div>
+      </div>
+      <div class="placement-cell">
+        <div class="num">200+</div>
+        <div class="lbl">recruiters on campus this season</div>
+      </div>
+    </div>
+
+    <div class="recruiters">
+      <span class="recruiter-chip">Infosys</span>
+      <span class="recruiter-chip">TCS</span>
+      <span class="recruiter-chip">Wipro</span>
+      <span class="recruiter-chip">HDFC Bank</span>
+      <span class="recruiter-chip">ICICI Bank</span>
+      <span class="recruiter-chip">Tech Mahindra</span>
+      <span class="recruiter-chip">Cognizant</span>
+      <span class="recruiter-chip">Byju's</span>
+      <span class="recruiter-chip">Reliance Industries</span>
+      <span class="recruiter-chip">Cipla</span>
+    </div>
+  </div>
+</section>
+
+<section id="achievements">
+  <div class="wrap">
+    <div class="section-head">
+      <span class="tag">Milestones</span>
+      <h2>A short record of recent achievements</h2>
+      <p>Selected entries from the university's institutional record.</p>
+    </div>
+
+    <div class="achieve-grid">
+      <div class="achieve-card">
+        <span class="year">2025</span>
+        <h3>NAAC Accreditation Renewed</h3>
+        <p>Re-assessed and accredited following review of academic, infrastructure, and governance standards.</p>
+      </div>
+      <div class="achieve-card">
+        <span class="year">2024</span>
+        <h3>New Centre for AI &amp; Data Science</h3>
+        <p>A dedicated lab and curriculum track launched within the School of Engineering &amp; Technology.</p>
+      </div>
+      <div class="achieve-card">
+        <span class="year">2024</span>
+        <h3>Smart Agriculture Research Grant</h3>
+        <p>Faculty in the School of Agriculture Sciences secured funding for precision-farming research.</p>
+      </div>
+      <div class="achieve-card">
+        <span class="year">2023</span>
+        <h3>Moot Court National Ranking</h3>
+        <p>School of Law students placed among the top teams at a national-level moot court competition.</p>
+      </div>
+      <div class="achieve-card">
+        <span class="year">2023</span>
+        <h3>Industry MoUs Expanded</h3>
+        <p>New memoranda signed with regional manufacturing and IT firms for internships and live projects.</p>
+      </div>
+      <div class="achieve-card">
+        <span class="year">2022</span>
+        <h3>Library &amp; Research Wing Opened</h3>
+        <p>Expanded reading rooms and a digital archive added to the central library building.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="campus-life">
+  <div class="wrap">
+    <div class="section-head">
+      <span class="tag">Campus Life</span>
+      <h2>A look across the 25-acre campus</h2>
+      <p>Hostels, labs, sports grounds, and open spaces that make up day-to-day campus life.</p>
+    </div>
+
+    <div class="gallery-grid">
+      <div class="g-tile g1"><span>Central Library &amp; Research Wing</span></div>
+      <div class="g-tile g2"><span>Engineering Workshops</span></div>
+      <div class="g-tile g3"><span>Agriculture Demonstration Farm</span></div>
+      <div class="g-tile g4"><span>Sports Complex</span></div>
+      <div class="g-tile g5"><span>Residential Hostels</span></div>
+    </div>
+  </div>
+</section>
+
+<section class="cta-band">
+  <div class="wrap">
+    <h2>Ready to add your name to the register?</h2>
+    <p>Start with a short admission inquiry — our desk responds within two working days.</p>
+    <a href="index.html#admission" class="btn">Go to admission form →</a>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <div class="name">RIMT University</div>
+        <p>Mandi Gobindgarh, Fatehgarh Sahib, Punjab — a residential campus for engineering, management, agriculture, law, pharmacy and the sciences.</p>
+      </div>
+      <div class="footer-col">
+        <h5>Explore</h5>
+        <ul>
+          <li><a href="index.html#about">About</a></li>
+          <li><a href="index.html#programs">Programs</a></li>
+          <li><a href="portfolio.html">Portfolio</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h5>Admissions</h5>
+        <ul>
+          <li><a href="index.html#admission">Inquiry form</a></li>
+          <li><a href="index.html#programs">Eligibility</a></li>
+          <li><a href="index.html#admission">Scholarships</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h5>Contact</h5>
+        <ul>
+          <li>admissions@rimt.ac.in</li>
+          <li>+91 98000 00000</li>
+          <li>Mandi Gobindgarh, Punjab</li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2026 RIMT University. This is a demonstration website.</span>
+      <span>Built with care for prospective students.</span>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>
